@@ -1,14 +1,12 @@
-import Quote from "./Quote";
-
 export default function Skills() {
     return (
-        <div className="my-6">
+        <section className="bg-slate-200 p-6 rounded-lg">
             <h1 
-                id="Skills"
-                className="py-4 text-2xl md:text-3xl font-bold tracking-wide">Principais Habilidades</h1>
-            <Quote>
-                HTML, CSS, Sass, TailwindCSS, Bootstrap, Javascript, Typescript, ReactJS, NextJS, Express, NodeJS, PHP, Python, MySQL, SQLite.
-            </Quote>
-        </div>
+                id="skills"
+                className="text-slate-800 mb-4 text-2xl md:text-xl font-bold tracking-wide">Principais Habilidades</h1>
+            <span className="text-slate-600">
+                HTML, CSS, Sass, TailwindCSS, Bootstrap, Responsive Design, UI/UX, Javascript, Typescript, ReactJS, NextJS, Express, NodeJS, PHP, Python, MySQL, SQLite.
+            </span>
+        </section>
     );
 }

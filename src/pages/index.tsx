@@ -11,8 +11,9 @@ import Layout from "@/components/Layout";
 import Header from "@/components/Header";
 import Portfolio from "@/components/Portfolio";
 import Footer from "@/components/Footer";
-import Quote from "@/components/Quote";
-import Skills from "@/components/Skills";
+
+
+import { Fade } from "react-awesome-reveal";
 
 const fetchFromNotion = async () => {
   const res = await fetch('http://localhost:3000/api/notion');
@@ -38,15 +39,13 @@ export default function Home() {
 
   return (
     <div className={inter.className}>
-      <Header />
-      <Layout>
-        <Quote>
-          &#60;Olá! Eu sou Helder, um desenvolvedor fullstack com enfâse em front-end. Tenho 17 anos e sou um apaixonado por tecnologia, além de adorar enfrentar novos desafios. /&#62;
-        </Quote>
-        <Skills />
-        <Portfolio data={posts} load={loading} />
-      </Layout>
-      <Footer />
+        <Header />
+        <Fade>
+          <Layout>
+            <Portfolio data={posts} load={loading} />
+          </Layout>
+          <Footer />
+        </Fade>
     </div>
   );
 }

@@ -14,6 +14,9 @@ module.exports = {
       },
       margin: {
         '16':'64px'
+      },
+      screens: {
+        'md': '980px'
       }
     },
   },

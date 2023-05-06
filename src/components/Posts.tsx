@@ -24,39 +24,40 @@ interface PostsProps {
 
 export const Posts = ({ posts, grid }:PostsProps) => (
   <HoverCard.Root>
-    <HoverCard.Trigger asChild>
-      <a
-        className={`
-          w-full 
-          h-[300px]
-          bg-slate-400 
-          relative overflow-hidden
-          ${grid}
-        `}
-        href={posts.url}
-        target="_blank"
-        rel="noreferrer noopener"
-      >
-        <div 
-          className="
-            absolute 
-            w-full
-            h-full
-            top-0 
-            left-0 
-            bg-no-repeat 
-            bg-center 
-            bg-cover
-            hover:scale-125
-            transition-all 
-            duration-200 
-            ease-in" 
-          style={{
-            backgroundImage: 'url("https://1.bp.blogspot.com/-ekd0JSmGzGk/YVuy2ry1WOI/AAAAAAAAAgI/vSdfuKsjjfotz3jUpAHLUx3MIZ5RhzCFACLcBGAsYHQ/s1764/Scooby%2BDoo%2Bfilme.png")'
-          }} 
-        />
-      </a>
-    </HoverCard.Trigger>
+      <HoverCard.Trigger asChild>
+        <a
+          className={`
+            w-full 
+            h-[200px]
+            rounded-lg
+            bg-slate-400 
+            relative overflow-hidden
+            ${grid}
+          `}
+          href={posts.url}
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          <div 
+            className="
+              absolute 
+              w-full
+              h-full
+              top-0 
+              left-0 
+              bg-no-repeat 
+              bg-center 
+              bg-cover
+              hover:scale-125
+              transition-all 
+              duration-200 
+              ease-in" 
+            style={{
+              backgroundImage: 'url("https://1.bp.blogspot.com/-ekd0JSmGzGk/YVuy2ry1WOI/AAAAAAAAAgI/vSdfuKsjjfotz3jUpAHLUx3MIZ5RhzCFACLcBGAsYHQ/s1764/Scooby%2BDoo%2Bfilme.png")'
+            }} 
+          />
+        </a>
+      </HoverCard.Trigger>
     <HoverCard.Portal>
       <HoverCard.Content
         className="data-[side=bottom]:animate-slideUpAndFade data-[side=right]:animate-slideLeftAndFade data-[side=left]:animate-slideRightAndFade data-[side=top]:animate-slideDownAndFade w-[300px] rounded-md bg-white p-5 shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] data-[state=open]:transition-all"
