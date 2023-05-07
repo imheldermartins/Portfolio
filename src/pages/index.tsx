@@ -30,9 +30,9 @@ export default function Home() {
     const fetch = async () => {
       setLoading(true);
       const data = await fetchFromNotion();
-      setLoading(false);
 
       setPosts(data);
+      setLoading(false);
     }
     fetch()
   }, [fetch])

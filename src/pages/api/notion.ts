@@ -19,7 +19,10 @@ type Row = {
         title: {id: string, title: {text: {content:string}}[]},
         content: {id: string, rich_text: {text: {content:string}}[]},
         tags: {id: string, multi_select: {color: string, id: string, name: string}[]},
-        url: {id: string, type: string, url: string}
+        url: {id: string, type: string, url: string},
+        preview: {id: string, type: string, url: string},
+        img_modal: {id: string, type: string, url: string},
+        video: {id: string, type: string, url: string},
     };
     icon: {emoji:string, type:string};
     created_time: string;
@@ -37,10 +40,13 @@ export default async function handle(req:NextApiRequest, res:NextApiResponse) {
     const rows = query.results as Row[];
 
     const rowsStructured = {
-        title: rows.map(p => p.properties.title.title[0].text.content),
-        content: rows.map(c => c.properties.content.rich_text[0].text.content),
-        tags: rows.map(tag => tag.properties.tags.multi_select),
-        url: rows.map(url => url.properties.url.url),
+        title: rows.map(p => p.properties.title?.title[0].text.content),
+        content: rows.map(c => c.properties.content?.rich_text[0].text.content),
+        tags: rows.map(tag => tag.properties.tags?.multi_select),
+        url: rows.map(url => url.properties.url?.url),
+        preview: rows.map(prev => prev.properties.preview?.url),
+        img_modal: rows.map(img => img.properties.img_modal?.url),
+        video: rows.map(vid => vid.properties.video?.url),
         created_time: rows.map(dt => dt.created_time),
         last_edited_time: rows.map(lt => lt.last_edited_time)
     };
@@ -54,6 +60,9 @@ export default async function handle(req:NextApiRequest, res:NextApiResponse) {
             content: rowsStructured.content[i],
             tags: rowsStructured.tags[i],
             url: rowsStructured.url[i],
+            preview: rowsStructured.preview[i],
+            img_modal: rowsStructured.img_modal[i],
+            video: rowsStructured.video[i],
             created_time: rowsStructured.created_time[i],
             last_edited_time: rowsStructured.last_edited_time[i]
         });

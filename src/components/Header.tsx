@@ -12,7 +12,7 @@ export default function Header() {
       className='
                 w-full 
                 h-[40vh]
-                bg-[url("https://pbs.twimg.com/media/E9bEa31XMAwGf49.jpg")] 
+                bg-[url("https://picsum.photos/1920/1080")] 
                 bg-fixed 
                 bg-cover 
                 bg-no-repeat 

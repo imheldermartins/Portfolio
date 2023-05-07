@@ -5,7 +5,9 @@ interface Posts {
     content: string;
     tags: {name:string}[];
     url: string;
-    img: string;
+    preview: string;
+    img_modal: string;
+    video: string;
     created_time: string;
     last_edited_time: string;
 }

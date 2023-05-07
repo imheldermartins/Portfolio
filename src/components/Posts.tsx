@@ -7,12 +7,14 @@ import {
 } from "date-fns"
 import { ptBR } from 'date-fns/locale';
 
+import Modal from './Modal';
+
 interface Posts {
     title: string;
     content: string;
     tags: {name:string}[];
     url: string;
-    img: string;
+    preview: string;
     created_time: string;
     last_edited_time: string;
 }
@@ -30,6 +32,7 @@ export const Posts = ({ posts, grid }:PostsProps) => (
             w-full 
             h-[200px]
             rounded-lg
+            border border-slate-300
             bg-slate-400 
             relative overflow-hidden
             ${grid}
@@ -53,7 +56,7 @@ export const Posts = ({ posts, grid }:PostsProps) => (
               duration-200 
               ease-in" 
             style={{
-              backgroundImage: 'url("https://1.bp.blogspot.com/-ekd0JSmGzGk/YVuy2ry1WOI/AAAAAAAAAgI/vSdfuKsjjfotz3jUpAHLUx3MIZ5RhzCFACLcBGAsYHQ/s1764/Scooby%2BDoo%2Bfilme.png")'
+              backgroundImage: `url('${posts.preview}')`
             }} 
           />
         </a>
@@ -64,13 +67,6 @@ export const Posts = ({ posts, grid }:PostsProps) => (
         sideOffset={5}
       >
         <div className="flex flex-col gap-[7px]">
-          <iframe
-            className='w-full rounded-lg'
-            src="https://www.youtube.com/embed/zoFHtDo8jEQ" 
-            title="YouTube video player"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share;"
-            allowFullScreen
-          />
           <div className="flex flex-col gap-[15px]">
             <div>
               <div className="text-mauve12 m-0 text-2xl font-bold">{posts.title}</div>
@@ -88,6 +84,8 @@ export const Posts = ({ posts, grid }:PostsProps) => (
             <div className="text-mauve12 m-0 text-base leading-[1.5]">
               {posts.content}
             </div>
+
+            <Modal posts={posts} />
           </div>
         </div>
 
