@@ -10,13 +10,15 @@ import { ptBR } from 'date-fns/locale';
 import Modal from './Modal';
 
 interface Posts {
-    title: string;
-    content: string;
-    tags: {name:string}[];
-    url: string;
-    preview: string;
-    created_time: string;
-    last_edited_time: string;
+  title: string;
+  content: string;
+  tags: {name:string}[];
+  url: string;
+  preview: string;
+  img_modal: string;
+  video: string;
+  created_time: string;
+  last_edited_time: string;
 }
 
 interface PostsProps {
