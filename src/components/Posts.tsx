@@ -8,6 +8,7 @@ import {
 import { ptBR } from 'date-fns/locale';
 
 import Modal from './Modal';
+import { formatDriveUrl } from '@/utils/urlFormat';
 
 interface Posts {
   title: string;
@@ -58,7 +59,7 @@ export const Posts = ({ posts, grid }:PostsProps) => (
               duration-200 
               ease-in" 
             style={{
-              backgroundImage: `url('${posts.preview}')`
+              backgroundImage: `url('${formatDriveUrl(posts.preview)}')`
             }} 
           />
         </a>

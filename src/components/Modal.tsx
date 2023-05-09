@@ -7,6 +7,7 @@ import {
     format
 } from "date-fns"
 import { ptBR } from 'date-fns/locale';
+import { formatDriveUrl } from '@/utils/urlFormat';
 
 interface Posts {
     title: string;
@@ -53,7 +54,7 @@ export default function Modal({posts}:PostsProps) {
                     </Dialog.Description>
                     <div className="w-full p-3 flex flex-col gap-3">
                         <img 
-                            src={posts.img_modal}
+                            src={formatDriveUrl(posts.img_modal)}
                             className='w-full bg-slate-300 border border-slate-400 rounded-lg'
                         />
                         <img

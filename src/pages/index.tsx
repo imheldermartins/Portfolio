@@ -26,7 +26,8 @@ export default function Home() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useMemo(() => {
+  // TO DO: Fix this to Deploy
+  useEffect(() => {
     const fetch = async () => {
       setLoading(true);
       const data = await fetchFromNotion();
