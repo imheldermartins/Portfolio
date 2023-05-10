@@ -30,6 +30,7 @@ type Row = {
   }
 
 export default async function handle(req:NextApiRequest, res:NextApiResponse) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
     if (!data.key || !data.db_id) throw new Error('Missing a data parameters.');
 
     const query = await notion.databases.query({    
