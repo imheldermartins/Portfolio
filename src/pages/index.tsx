@@ -26,7 +26,6 @@ export default function Home() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // TO DO: Fix this to Deploy
   useEffect(() => {
     const fetch = async () => {
       setLoading(true);
