@@ -6,8 +6,8 @@ import {
 import { Client } from "@notionhq/client"; // NotionAPI
 
 const data = {
-    key: "secret_mvTHifjdfJu0DxkrK8DFBibOKs3BlA9yxjbIwKGHPVu",
-    db_id: "b520492758ab41c4a567303b082a5887"
+    key: process.env.KEY,
+    db_id: process.env.DB_ID
 };
 
 const notion = new Client({
