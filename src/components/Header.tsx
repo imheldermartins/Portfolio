@@ -3,7 +3,6 @@ import {
   GithubLogo,
   LinkedinLogo
 } from "@phosphor-icons/react";
-import Nav from "./Nav";
 
 export const profile = "/assets/profile.jpg";
 
@@ -14,7 +13,7 @@ export default function Header() {
                 relative
                 w-full 
                 h-[40vh]
-                bg-[url("https://picsum.photos/1920/1080")] 
+                bg-[url("https://picsum.photos/1000/400/?blur=3")] 
                 bg-fixed 
                 bg-cover 
                 bg-no-repeat 
