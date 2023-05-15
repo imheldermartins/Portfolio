@@ -12,7 +12,7 @@ import Portfolio from "@/components/Portfolio";
 import Footer from "@/components/Footer";
 
 const fetchFromNotion = async () => {
-  const res = await fetch('http://localhost:3000/api/notion');
+  const res = await fetch('https://heldermartins.vercel.app/api/notion');
   const data = await res.json();
   return JSON.parse(data);
 }
