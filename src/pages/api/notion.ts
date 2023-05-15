@@ -19,7 +19,8 @@ type Row = {
         title: {id: string, title: {text: {content:string}}[]},
         content: {id: string, rich_text: {text: {content:string}}[]},
         tags: {id: string, multi_select: {color: string, id: string, name: string}[]},
-        url: {id: string, type: string, url: string},
+        page: {id: string, type: string, url: string},
+        github: {id: string, type: string, url: string},
         preview: {id: string, type: string, url: string},
         img_modal: {id: string, type: string, url: string},
         video: {id: string, type: string, url: string},
@@ -29,7 +30,7 @@ type Row = {
     last_edited_time:string;
   }
 
-export default async function handle(req:NextApiRequest, res:NextApiResponse) {
+export default async function handleNotionAPI(req:NextApiRequest, res:NextApiResponse) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     if (!data.key || !data.db_id) throw new Error('Missing a data parameters.');
 
@@ -41,10 +42,11 @@ export default async function handle(req:NextApiRequest, res:NextApiResponse) {
     const rows = query.results as Row[];
 
     const rowsStructured = {
-        title: rows.map(p => p.properties.title?.title[0].text.content),
+        title: rows.map(p => p.properties.title?.title[0]?.text.content),
         content: rows.map(c => c.properties.content?.rich_text[0].text.content),
         tags: rows.map(tag => tag.properties.tags?.multi_select),
-        url: rows.map(url => url.properties.url?.url),
+        page: rows.map(url => url.properties.page?.url),
+        github: rows.map(url => url.properties.github?.url),
         preview: rows.map(prev => prev.properties.preview?.url),
         img_modal: rows.map(img => img.properties.img_modal?.url),
         video: rows.map(vid => vid.properties.video?.url),
@@ -60,7 +62,8 @@ export default async function handle(req:NextApiRequest, res:NextApiResponse) {
             title: rowsStructured.title[i],
             content: rowsStructured.content[i],
             tags: rowsStructured.tags[i],
-            url: rowsStructured.url[i],
+            page: rowsStructured.page[i],
+            github: rowsStructured.github[i],
             preview: rowsStructured.preview[i],
             img_modal: rowsStructured.img_modal[i],
             video: rowsStructured.video[i],

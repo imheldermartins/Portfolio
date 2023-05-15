@@ -4,7 +4,8 @@ interface Posts {
     title: string;
     content: string;
     tags: {name:string}[];
-    url: string;
+    page: string;
+    github: string;
     preview: string;
     img_modal: string;
     video: string;
@@ -12,7 +13,7 @@ interface Posts {
     last_edited_time: string;
 }
 
-interface HeaderProps {
+interface PortfolioProps {
   data: Posts[];
   load: boolean;
 }
@@ -27,7 +28,7 @@ const Loading = () => (
     </>
 )
 
-export default function Portfolio(props:HeaderProps) {
+export default function Portfolio(props:PortfolioProps) {
     return (
         <>
             <h1 

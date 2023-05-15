@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react"
 import * as Dialog from '@radix-ui/react-dialog';
 import { Cross2Icon } from '@radix-ui/react-icons';
 
@@ -6,14 +6,19 @@ import {
     parseISO, 
     format
 } from "date-fns"
+
 import { ptBR } from 'date-fns/locale';
+
 import { formatDriveUrl } from '@/utils/urlFormat';
 
-interface Posts {
+import { ArrowSquareOut, GithubLogo } from '@phosphor-icons/react';
+
+interface Modal {
     title: string;
     content: string;
     tags: {name:string}[];
-    url: string;
+    page: string;
+    github: string;
     preview: string;
     img_modal: string;
     video: string;
@@ -21,17 +26,16 @@ interface Posts {
     last_edited_time: string;
 }
 
-interface PostsProps {
-    posts: Posts;
+interface ModalProps {
+    posts: Modal;
+    children: React.ReactNode;
 }
 
-export default function Modal({posts}:PostsProps) {
+const Modal = ({ posts, children }: ModalProps) => {
     return (
         <Dialog.Root>
             <Dialog.Trigger asChild>
-                <button className="bg-slate-800 text-slate-200 hover:shadow-md hover:bg-slate-900 inline-flex h-[35px] items-center justify-center rounded-md px-[15px] font-medium leading-none focus:outline-none">
-                    Ver mais
-                </button>
+                {children}
             </Dialog.Trigger>
             <Dialog.Portal>
                 <Dialog.Overlay className="bg-[rgb(0,0,0)] opacity-[25%] data-[state=open]:animate-overlayShow fixed inset-0" />
@@ -42,14 +46,34 @@ export default function Modal({posts}:PostsProps) {
                     <span className='text-slate-600 text-md font-light'>
                         {format(parseISO(posts.last_edited_time), "'Publicado em' dd 'de' MMMM 'de' yyyy 'às' HH:mm", {locale: ptBR})}
                     </span>
+                    {/* Tags */}
                     <div className='flex flex-row flex-wrap gap-1 my-3'>
                         {posts.tags && Object.values(posts.tags).map((tag) => (
-                        <span key={tag.name} className="border border-slate-700 text-slate-600 rounded-md px-3 py-1 text-sm">
+                        <span key={tag.name} className="border border-slate-600 text-slate-600 rounded-md px-3 py-1 text-sm">
                             {tag.name}
                         </span>
                         ))}
                     </div>
-                    <Dialog.Description className="text-slate-800 mt-[10px] mb-5 text-md leading-tight tracking-normal">
+                    {/* Links */}
+                    <div className="flex flex-row gap-3">
+                        <a 
+                            href={posts.page}
+                            target="_blank"
+                            className='flex gap-2 items-center border border-slate-400 text-slate-600 text-base px-3 py-2 rounded-lg font-semibold'
+                        >
+                            <ArrowSquareOut size={24} />
+                            Ir para a página
+                        </a>
+                        <a 
+                            href={posts.github}
+                            target="_blank"
+                            className='flex gap-2 items-center bg-black text-base px-3 py-2 rounded-lg text-white font-semibold'
+                        >
+                            <GithubLogo size={24}/>
+                            Github
+                        </a>
+                    </div>
+                    <Dialog.Description className="bg-slate-300 text-slate-600 my-3 rounded-lg p-4">
                         {posts.content}
                     </Dialog.Description>
                     <div className="w-full p-3 flex flex-col gap-3">
@@ -74,4 +98,6 @@ export default function Modal({posts}:PostsProps) {
             </Dialog.Portal>
         </Dialog.Root>
     );
-}
+};
+
+export default Modal;

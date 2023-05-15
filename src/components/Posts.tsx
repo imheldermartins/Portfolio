@@ -14,7 +14,8 @@ interface Posts {
   title: string;
   content: string;
   tags: {name:string}[];
-  url: string;
+  page: string;
+  github: string;
   preview: string;
   img_modal: string;
   video: string;
@@ -27,42 +28,40 @@ interface PostsProps {
     grid: string;
 }
 
-export const Posts = ({ posts, grid }:PostsProps) => (
+export const Posts = ({ posts, grid }: PostsProps) => (
   <HoverCard.Root>
       <HoverCard.Trigger asChild>
-        <a
-          className={`
-            w-full 
-            h-[200px]
-            rounded-lg
-            border border-slate-300
-            bg-slate-400 
-            relative overflow-hidden
-            ${grid}
-          `}
-          href={posts.url}
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          <div 
-            className="
-              absolute 
-              w-full
-              h-full
-              top-0 
-              left-0 
-              bg-no-repeat 
-              bg-center 
-              bg-cover
-              hover:scale-125
-              transition-all 
-              duration-200 
-              ease-in" 
-            style={{
-              backgroundImage: `url('${formatDriveUrl(posts.preview)}')`
-            }} 
-          />
-        </a>
+          <div
+            className={`
+              w-full 
+              h-[200px]
+              rounded-lg
+              border border-slate-300
+              bg-slate-400 
+              relative overflow-hidden
+              ${grid}
+            `}
+            rel="noreferrer noopener"
+          >
+            <div 
+              className="
+                absolute 
+                w-full
+                h-full
+                top-0 
+                left-0 
+                bg-no-repeat 
+                bg-center 
+                bg-cover
+                hover:scale-125
+                transition-all 
+                duration-200 
+                ease-in" 
+              style={{
+                backgroundImage: `url('${formatDriveUrl(posts.preview)}')`
+              }} 
+            />
+          </div>
       </HoverCard.Trigger>
     <HoverCard.Portal>
       <HoverCard.Content
@@ -88,7 +87,11 @@ export const Posts = ({ posts, grid }:PostsProps) => (
               {posts.content}
             </div>
 
-            <Modal posts={posts} />
+            <Modal posts={posts}>
+              <button className="bg-slate-800 text-slate-200 hover:shadow-md hover:bg-slate-900 inline-flex h-[35px] items-center justify-center rounded-md px-[15px] font-medium leading-none focus:outline-none">
+                  Ver mais
+              </button>
+            </Modal>
           </div>
         </div>
 
