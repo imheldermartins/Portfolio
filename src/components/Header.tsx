@@ -13,8 +13,9 @@ export default function Header() {
                 relative
                 w-full 
                 h-[40vh]
-                bg-[url("https://picsum.photos/800/600/?blur=1")] 
-                md:bg-[url("https://picsum.photos/1000/400/?blur=3")] 
+                md:h-[60vh]
+                bg-[url("https://picsum.photos/1000/1000/")] 
+                md:bg-[url("https://picsum.photos/1200/720/")] 
                 bg-fixed 
                 bg-cover 
                 bg-no-repeat 
