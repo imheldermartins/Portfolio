@@ -32,7 +32,7 @@ export const Posts = ({ posts, grid }: PostsProps) => (
         <div 
           className=" absolute w-full h-full top-0  left-0  bg-no-repeat  bg-center  bg-cover hover:scale-125 transition-all  duration-200  ease-in" 
           style={{
-            backgroundImage: `url('${formatDriveUrl(posts.preview)}')`
+            backgroundImage: `url('${posts.preview}')`
           }} 
         />
       </div>
@@ -46,7 +46,7 @@ export const Posts = ({ posts, grid }: PostsProps) => (
         <div 
           className=" absolute w-full h-full top-0  left-0  bg-no-repeat  bg-center  bg-cover hover:scale-125 transition-all  duration-200  ease-in" 
           style={{
-            backgroundImage: `url('${formatDriveUrl(posts.preview)}')`
+            backgroundImage: `url('${posts.img_modal}')`
           }} 
         />
 

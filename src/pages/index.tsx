@@ -1,45 +1,44 @@
-import { useEffect, useMemo, useState } from "react";
-import { Inter } from "next/font/google"
+import Layout from '@/components/Layout';
+import Header from '@/components/Header';
+import Portfolio from '@/components/Portfolio';
+import Footer from '@/components/Footer';
+import { GithubUser } from '@/types/github.user';
+import { fetchFromNotion } from '@/utils/fetchFromNotion';
+import { getUserFromGithub } from '@/utils/getUserFromGithub';
+import { useEffect, useState } from 'react';
 
-const inter = Inter({
-  weight: ['400', '500', '600', '700', '900'],
-  subsets: ['latin']
-})
-
-import Layout from "@/components/Layout";
-import Header from "@/components/Header";
-import Portfolio from "@/components/Portfolio";
-import Footer from "@/components/Footer";
-
-const fetchFromNotion = async () => {
-  const res = await fetch('https://heldermartins.vercel.app/api/notion');
-  const data = await res.json();
-  return JSON.parse(data);
-}
-
-export default function Home() {
-
+export default function Page() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState<GithubUser>();
 
   useEffect(() => {
-    const fetch = async () => {
+    const fetchPosts = async () => {
       setLoading(true);
       const data = await fetchFromNotion();
-
       setPosts(data);
       setLoading(false);
-    }
-    fetch()
-  }, [fetch])
+    };
+
+    fetchPosts();
+  }, []);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const data = await getUserFromGithub();
+      setUser(data);
+    };
+
+    fetchUser();
+  }, []);
 
   return (
-    <div className={inter.className}>
-        <Header />
-          <Layout>
-            <Portfolio data={posts} load={loading} />
-          </Layout>
-          <Footer />
+    <div>
+      <Header avatar_url={user?.avatar_url} name={user?.name} login={user?.login} />
+      <Layout {...user}>
+        <Portfolio data={posts} load={loading} />
+      </Layout>
+      <Footer />
     </div>
   );
 }

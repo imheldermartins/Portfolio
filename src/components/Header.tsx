@@ -1,3 +1,4 @@
+import { GithubUser } from "@/types/github.user";
 import {
   CodepenLogo,
   GithubLogo,
@@ -6,7 +7,13 @@ import {
 
 export const profile = "/assets/profile.jpg";
 
-export default function Header() {
+interface HeaderProps extends Partial<GithubUser> {};
+
+export default function Header({
+  avatar_url = profile,
+  name = "Helder Martins",
+  login = "@heldermartins4"
+}: HeaderProps) {
   return (
     <div 
       className='
@@ -14,8 +21,8 @@ export default function Header() {
                 w-full 
                 h-[40vh]
                 md:h-[60vh]
-                bg-[url("https://picsum.photos/1000/1000/")] 
-                md:bg-[url("https://picsum.photos/1200/720/")] 
+                bg-[url("https://picsum.photos/1000/1000")] 
+                md:bg-[url("https://picsum.photos/1600/600")] 
                 bg-fixed 
                 bg-cover 
                 bg-no-repeat 
@@ -45,14 +52,14 @@ export default function Header() {
                 border-4 
                 border-white"
                 style={{
-                  backgroundImage: `url('${profile}')`
+                  backgroundImage: `url('${avatar_url}')`
                 }} 
         />
         {/* Info - Desc */}
         <div className="w-full md:w-[calc(100%-200px)] p-3 flex flex-col md:flex-row justify-between items-center">
           <span>
-            <h4 className="text-base font-base tracking-wide text-center md:text-left">@heldermartins4</h4>
-            <h1 className="text-3xl md:text-4xl font-black leading-tight tracking-wide mb-3">Helder Martins</h1>
+            <h4 className="text-base font-base tracking-wide text-center md:text-left">@{login}</h4>
+            <h1 className="text-3xl md:text-4xl font-black leading-tight tracking-wide mb-3">{name}</h1>
           </span>
           <span className="flex flex-row mt-3 md:mt-0">
             <a 
