@@ -38,7 +38,7 @@ export default function Page() {
       <Layout {...user}>
         <Portfolio data={posts} load={loading} />
       </Layout>
-      <Footer />
+      <Footer name={user?.name} />
     </div>
   );
 }
