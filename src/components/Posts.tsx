@@ -43,10 +43,11 @@ export const Posts = ({ posts, grid }: PostsProps) => (
         className={`${grid} w-full h-[200px] rounded-lg border border-slate-300 block md:hidden sm:bg-slate-400  relative  overflow-hidden`}
         rel="noreferrer noopener"
       >
+        AAAA
         <div 
           className=" absolute w-full h-full top-0  left-0  bg-no-repeat  bg-center  bg-cover hover:scale-125 transition-all  duration-200  ease-in" 
           style={{
-            backgroundImage: `url('${posts.img_modal}')`
+            backgroundImage: `url('${posts.preview}')`
           }} 
         />
 
