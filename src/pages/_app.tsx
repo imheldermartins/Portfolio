@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   authors: [{name: 'Helder Martins'}],
   openGraph: {
     description: 'Olá! Eu sou Helder, um desenvolvedor fullstack com ênfase em front-end. Tenho 19 anos e sou um apaixonado por tecnologia, além de adorar enfrentar novos desafios.',
-    images: ["https://picsum.photos/600/600"],
+    images: ["https://avatars.githubusercontent.com/u/167116325?v=4"],
     title: 'Meu Portfólio | Helder Martins',
     url: 'https://heldermartins.vercel.app',
   },
