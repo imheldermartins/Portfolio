@@ -47,7 +47,7 @@ const Modal = ({ posts, children }: ModalProps) => {
                         {posts.title}
                     </Dialog.Title>
                     <span className='text-slate-600 dark:text-zinc-500 text-md font-light'>
-                        {format(parseISO(posts.last_edited_time), "'Publicado em' dd 'de' MMMM 'de' yyyy 'às' HH:mm", { locale: ptBR })}
+                        {format(parseISO(posts.last_edited_time), "'Editado em' dd 'de' MMMM 'de' yyyy 'às' HH:mm", { locale: ptBR })}
                     </span>
                     {/* Tags */}
                     <div className='flex flex-row flex-wrap gap-1 my-3'>

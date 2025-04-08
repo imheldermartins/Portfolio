@@ -1,6 +1,6 @@
-import { 
+import {
     NextApiRequest,
-    NextApiResponse    
+    NextApiResponse
 } from "next";
 
 import { Client } from "@notionhq/client"; // NotionAPI
@@ -16,61 +16,53 @@ const notion = new Client({
 
 type Row = {
     properties: {
-        title: {id: string, title: {text: {content:string}}[]},
-        content: {id: string, rich_text: {text: {content:string}}[]},
-        tags: {id: string, multi_select: {color: string, id: string, name: string}[]},
-        page: {id: string, type: string, url: string},
-        github: {id: string, type: string, url: string},
-        preview: {id: string, type: string, url: string},
-        img_modal: {id: string, type: string, url: string},
-        video: {id: string, type: string, url: string},
+        title: { id: string, title: { text: { content: string } }[] },
+        content: { id: string, rich_text: { text: { content: string } }[] },
+        tags: { id: string, multi_select: { color: string, id: string, name: string }[] },
+        page: { id: string, type: string, url: string },
+        github: { id: string, type: string, url: string },
+        preview: { id: string, type: string, url: string },
+        img_modal: { id: string, type: string, url: string },
+        video: { id: string, type: string, url: string },
+        order: { id: string, type: string, number: number },
     };
-    icon: {emoji:string, type:string};
+    icon: { emoji: string, type: string };
     created_time: string;
-    last_edited_time:string;
-  }
+    last_edited_time: string;
+}
 
-export default async function handleNotionAPI(req:NextApiRequest, res:NextApiResponse) {
+export default async function handleNotionAPI(req: NextApiRequest, res: NextApiResponse) {
     res.setHeader('Access-Control-Allow-Origin', '*');
-    if (!data.key || !data.db_id) throw new Error('Missing a data parameters.');
 
-    const query = await notion.databases.query({    
-        database_id: data.db_id
+    if (!data.key || !data.db_id)
+        throw new Error('Missing a data parameters.');
+
+    const query = await notion.databases.query({
+        database_id: data.db_id,
+        sorts: [
+            {
+                property: "order",
+                direction: "ascending"
+            }
+        ],
+    }) as unknown as { results: Row[] };
+
+    const { results: rows } = query;
+
+    const pages = rows.map((page) => {
+        return {
+            title: page.properties.title?.title[0]?.text.content,
+            content: page.properties.content?.rich_text[0].text.content,
+            tags: page.properties.tags?.multi_select,
+            page: page.properties.page?.url,
+            github: page.properties.github?.url,
+            preview: page.properties.preview?.url,
+            img_modal: page.properties.img_modal?.url,
+            video: page.properties.video?.url,
+            created_time: page.created_time,
+            last_edited_time: page.last_edited_time
+        };
     });
 
-    // @ts-ignore
-    const rows = query.results as Row[];
-
-    const rowsStructured = {
-        title: rows.map(p => p.properties.title?.title[0]?.text.content),
-        content: rows.map(c => c.properties.content?.rich_text[0].text.content),
-        tags: rows.map(tag => tag.properties.tags?.multi_select),
-        page: rows.map(url => url.properties.page?.url),
-        github: rows.map(url => url.properties.github?.url),
-        preview: rows.map(prev => prev.properties.preview?.url),
-        img_modal: rows.map(img => img.properties.img_modal?.url),
-        video: rows.map(vid => vid.properties.video?.url),
-        created_time: rows.map(dt => dt.created_time),
-        last_edited_time: rows.map(lt => lt.last_edited_time)
-    };
-
-    var obj = [];
-
-    for (let i = 0; i < rows.length; i++) {
-        // @ts-ignore
-        obj.push({
-            title: rowsStructured.title[i],
-            content: rowsStructured.content[i],
-            tags: rowsStructured.tags[i],
-            page: rowsStructured.page[i],
-            github: rowsStructured.github[i],
-            preview: rowsStructured.preview[i],
-            img_modal: rowsStructured.img_modal[i],
-            video: rowsStructured.video[i],
-            created_time: rowsStructured.created_time[i],
-            last_edited_time: rowsStructured.last_edited_time[i]
-        });
-    }
-    
-    res.status(200).json(JSON.stringify(obj));
+    res.status(200).json(JSON.stringify(pages));
 }

@@ -41,9 +41,8 @@ export default function Card({ children, posts }: CardsProps) {
                         <div className="flex flex-col gap-[15px]">
                             <div>
                                 <h1 className="text-black dark:text-zinc-300 m-0 text-2xl font-bold">{posts.title}</h1>
-                                <div className='text-xs text-slate-700 dark:text-zinc-500 font-normal tracking-wide mb-3'>{
-                                    format(parseISO(posts.last_edited_time), "dd 'de' MMMM 'de' yyyy 'às' HH:mm", { locale: ptBR })
-                                }</div>
+                                <div className='text-xs text-slate-700 dark:text-zinc-500 font-normal tracking-wide mb-3'>
+                                    {format(parseISO(posts.created_time), "'Criado em' dd 'de' MMMM 'de' yyyy 'às' HH:mm", { locale: ptBR })}</div>
                                 <ul className='flex flex-row flex-wrap gap-1'>
                                     {posts.tags && Object.values(posts.tags).map((tag) => (
                                         <li key={tag.name} className="border border-slate-700 text-slate-600 dark:border-zinc-700 dark:text-zinc-400 rounded-md px-3 py-1 text-xs">

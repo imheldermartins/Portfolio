@@ -19,9 +19,9 @@ export default function AboutMe({
                 <b>/&#62;</b><br />
 
                 <u className="underline underline-offset-4">📍 {location}</u>
-
-                <hr className="w-full border-t border-slate-400 dark:border-zinc-500 my-4" />
-
+            </p>
+            <hr className="w-full border-t border-slate-400 dark:border-zinc-500 my-4" />
+            <p className="text-slate-600 dark:text-zinc-400">
                 <b>[Github/bio]: </b>{bio}
             </p>
         </section>
