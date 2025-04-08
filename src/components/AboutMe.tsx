@@ -10,20 +10,20 @@ export default function AboutMe({
     const firstName = name?.split(" ")[0] || "Helder";
     const age = new Date().getFullYear() - 2005;
     return (
-        <section className="bg-slate-200 p-6 rounded-lg">
-            <h1 className="text-slate-800 mb-4 text-2xl md:text-xl font-bold tracking-wide">Sobre mim</h1>
-            <span className="text-slate-600">
+        <section className="bg-slate-200 dark:bg-zinc-800 p-6 rounded-lg">
+            <h2 className="text-slate-800 dark:text-zinc-300 mb-4 text-2xl md:text-xl font-bold tracking-wide">Sobre mim</h2>
+            <p className="text-slate-600 dark:text-zinc-400">
                 &#60;Olá! Eu sou <span className="font-semibold underline">{firstName}</span>,
                 um desenvolvedor fullstack com enfâse em front-end. Tenho {age} anos e sou
                 um apaixonado por tecnologia, além de adorar enfrentar novos desafios.
                 <b>/&#62;</b><br />
 
-                <span className="px-1 py-0.5 rounded-md border border-slate-400 bg-slate-300">📍 {location}</span>
+                <u className="underline underline-offset-4">📍 {location}</u>
 
-                <hr className="h-1 w-full border bg-slate-400 my-3" />
+                <hr className="w-full border-t border-slate-400 dark:border-zinc-500 my-4" />
 
                 <b>[Github/bio]: </b>{bio}
-            </span>
+            </p>
         </section>
     );
 }

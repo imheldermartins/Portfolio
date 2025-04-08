@@ -1,0 +1,14 @@
+Javascript
+Typescript
+MUI
+Styled-Components
+TailwindCSS
+Sass/Bootstrap
+Vite.js/Next.js
+Expo (React-Native)
+NodeJS/Express
+NodeJS/Fastify
+Django/Python
+MySQL
+PostgreSQL
+MongoDB

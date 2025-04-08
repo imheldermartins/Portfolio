@@ -6,6 +6,7 @@ import { GithubUser } from '@/types/github.user';
 import { fetchFromNotion } from '@/utils/fetchFromNotion';
 import { getUserFromGithub } from '@/utils/getUserFromGithub';
 import { useEffect, useState } from 'react';
+import { AnnouncementBar } from '@/components/AnnouncementBar';
 
 export default function Page() {
   const [posts, setPosts] = useState([]);
@@ -33,7 +34,8 @@ export default function Page() {
   }, []);
 
   return (
-    <div>
+    <div className='bg-white dark:bg-zinc-900'>
+      <AnnouncementBar />
       <Header avatar_url={user?.avatar_url} name={user?.name} login={user?.login} />
       <Layout {...user}>
         <Portfolio data={posts} load={loading} />

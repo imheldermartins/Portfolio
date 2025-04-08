@@ -3,7 +3,7 @@ import { Posts } from "./Posts";
 interface Posts {
     title: string;
     content: string;
-    tags: {name:string}[];
+    tags: { name: string }[];
     page: string;
     github: string;
     preview: string;
@@ -14,8 +14,8 @@ interface Posts {
 }
 
 interface PortfolioProps {
-  data: Posts[];
-  load: boolean;
+    data: Posts[];
+    load: boolean;
 }
 
 const Loading = () => (
@@ -28,12 +28,12 @@ const Loading = () => (
     </>
 )
 
-export default function Portfolio(props:PortfolioProps) {
+export default function Portfolio(props: PortfolioProps) {
     return (
         <>
-            <h1 
+            <h1
                 id="portfolio"
-                className="text-2xl md:text-3xl font-bold tracking-wide pb-4"
+                className="text-2xl md:text-3xl font-bold tracking-wide pb-4 text-white dark:text-zinc-300"
             >Portfólio</h1>
             <div className="grid grid-cols-1 gap-2 place-items-center md:grid-cols-2 lg:grid-cols-3">
 
@@ -41,8 +41,8 @@ export default function Portfolio(props:PortfolioProps) {
 
                 {!props.load && props.data.map((index, key) => (
                     <Posts
-                        key={key} 
-                        posts={index} 
+                        key={key}
+                        posts={index}
                         grid={key === 0 ? 'md:col-span-2' : ''}
                     />
                 ))}
