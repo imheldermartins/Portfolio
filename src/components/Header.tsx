@@ -37,7 +37,7 @@ export default function Header({
                 bg-fixed 
                 bg-cover 
                 bg-no-repeat 
-                text-black
+                text-zinc-300
                 md:text-white 
                 flex 
                 items-center
